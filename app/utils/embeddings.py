@@ -14,15 +14,13 @@ if TYPE_EMBEDDING == 'word2ec':
 else:
     # ru-en-RoSBERTa embeddings
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    tokenizer = AutoTokenizer.from_pretrained("ru-en-RoSBERTa")
-    model = AutoModel.from_pretrained("ru-en-RoSBERTa").to(device)
+    tokenizer = AutoTokenizer.from_pretrained("utils/ru-en-RoSBERTa")
+    model = AutoModel.from_pretrained("utils/ru-en-RoSBERTa").to(device)
 
 
 def get_word2vec_embedding(word: str) -> np.ndarray:
     """
-    Возвращает векторное представление (эмбеддинг) для слова с использованием модели Word2Vec.
-    Если передано одно слово, используется его эмбеддинг. Если строка состоит из нескольких слов,
-    используется эмбеддинг последнего слова.
+    Get word2vec embedding for given word
     """
     words = word.split()
 
@@ -59,7 +57,7 @@ def get_embeddings(lemmatized_texts: list) -> np.ndarray:
     Get embeddings for given texts
     """
     embeddings = []
-    for sentence in tqdm(lemmatized_texts):
+    for sentence in tqdm(set(lemmatized_texts)):
         embeddings.append(get_sentence_embedding(sentence))
 
     embeddings = np.array(embeddings)

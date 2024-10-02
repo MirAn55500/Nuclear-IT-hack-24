@@ -26,8 +26,8 @@ def plot_word_histogram(word_dict: dict):
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.bar(words, frequencies, color='skyblue')
     ax.set_ylabel('Frequencies')
-    ax.set_xlabel('Words and phrases')
-    ax.set_title('Word frequencies')
+    ax.set_xlabel('Слова и фразы')
+    ax.set_title('Частота фраз')
     ax.tick_params(axis='x', rotation=90)
     plt.tight_layout()
     return fig

@@ -52,13 +52,13 @@ def select_most_frequent_word(cluster_words: list) -> str:
                           key=lambda x: (-x[1], -brown_freq.get(x[0], 0)))
     return sorted_words[0][0]
 
-def replace_keys_by_function(d, func):
+def replace_keys_by_function(d, func, original_d):
     """
     Replace keys by function
     """
-    return {func(k): v for k, v in d.items()}
+    return {func(k, original_d): v for k, v in d.items()}
 
-def get_final_dict(word_clusters: dict) -> None:
+def get_final_dict(word_clusters: dict, original_d: dict) -> None:
     """
     Get final word dictionary
     """
@@ -67,6 +67,6 @@ def get_final_dict(word_clusters: dict) -> None:
         most_frequent_word = select_most_frequent_word(cluster_words)
         final_word_dict[most_frequent_word] = len(cluster_words)
 
-    final_word_dict = replace_keys_by_function(final_word_dict, lemma_replacement)
+    final_word_dict = replace_keys_by_function(final_word_dict, lemma_replacement, original_d)
 
     return final_word_dict

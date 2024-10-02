@@ -5,12 +5,10 @@ from nltk.tokenize import word_tokenize
 
 from natasha import MorphVocab, Doc, Segmenter, NewsMorphTagger, NewsEmbedding
 
-def dataset_to_text(dataset_path: str) -> (str, list):
+def data_to_text(data: dict) -> (str, list):
     """
     Convert dataset to text
     """
-    with open(dataset_path, 'r', encoding='utf-8') as file:
-        data = json.load(file)
     texts = []
     for answer in data["answers"]:
         texts.extend(answer)
@@ -59,10 +57,10 @@ def lemmatize_texts(texts: list):
     Lemmatize texts
     """
     lemmatized_texts = []
-    lemmatize_dict = {} # lemmatized_sentence: normal_sentence
+    lemmatize_dict = {}
 
     for sentence in texts:
-        lemmatized_sentence = lemmatize(sentence)
+        lemmatized_sentence = lemmatize(remove_stopwords(sentence))
         lemmatize_dict[lemmatized_sentence] = sentence
         lemmatized_texts.append(lemmatized_sentence)
 
