@@ -1,18 +1,21 @@
 import torch
 import torch.nn.functional as F
 from transformers import AutoTokenizer, AutoModel
+from gensim.models import KeyedVectors
 
 import numpy as np
 from tqdm import tqdm
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+tokenizer = AutoTokenizer.from_pretrained("ruBert-large")
+model = AutoModel.from_pretrained("ruBert-large").to(device)
+
+word2vec_model = KeyedVectors.load_word2vec_format("ruwiki_20180420_300d.txt")
 
 def get_word_embedding(word: str) -> torch.Tensor:
     """
     Get word embedding for given word
     """
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    tokenizer = AutoTokenizer.from_pretrained("ruBert-large")
-    model = AutoModel.from_pretrained("ruBert-large").to(device)
     
     # inputs = tokenizer(word, return_tensors="pt", max_length=512, padding=True, truncation=True).to(device)
     inputs = tokenizer("clustering: " + word, return_tensors="pt", max_length=512, padding=True, truncation=True).to(device)
