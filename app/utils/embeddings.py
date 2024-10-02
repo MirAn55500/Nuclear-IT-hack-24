@@ -14,8 +14,8 @@ if TYPE_EMBEDDING == 'word2ec':
 else:
     # ru-en-RoSBERTa embeddings
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    tokenizer = AutoTokenizer.from_pretrained("utils/ru-en-RoSBERTa")
-    model = AutoModel.from_pretrained("utils/ru-en-RoSBERTa").to(device)
+    tokenizer = AutoTokenizer.from_pretrained("ai-forever/ru-en-RoSBERTa")
+    model = AutoModel.from_pretrained("ai-forever/ru-en-RoSBERTa").to(device)
 
 
 def get_word2vec_embedding(word: str) -> np.ndarray:
