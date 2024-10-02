@@ -17,7 +17,7 @@ def process_data(file):
     with open(file, 'r') as f:
         data = json.load(f)
     
-    texts = dataset_to_text(data)
+    question, texts = dataset_to_text(data)
     texts = list(map(to_lowercase, texts))
     texts = list(map(remove_stopwords, texts))
     

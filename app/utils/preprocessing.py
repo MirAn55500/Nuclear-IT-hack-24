@@ -5,7 +5,7 @@ from nltk.tokenize import word_tokenize
 
 from natasha import MorphVocab, Doc, Segmenter, NewsMorphTagger, NewsEmbedding
 
-def dataset_to_text(dataset_path: str) -> list:
+def dataset_to_text(dataset_path: str) -> (str, list):
     """
     Convert dataset to text
     """
@@ -14,7 +14,8 @@ def dataset_to_text(dataset_path: str) -> list:
     texts = []
     for answer in data["answers"]:
         texts.extend(answer)
-    return texts
+    question = data["question"]
+    return question, texts
 
 def to_lowercase(sentence: str) -> str:
     """
