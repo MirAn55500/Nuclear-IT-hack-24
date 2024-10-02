@@ -38,6 +38,15 @@
 Кластеры слов:
 ![image](https://github.com/user-attachments/assets/5e2dfd18-5bdf-47cd-a119-2f8c6c15fdfa)
 
+## word2vec
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/214f0165-ded9-48ab-b5fe-a254866679e6" alt="word2vec" width="500"/>
+  <br>
+</p>
+
+Кластеры слов:
+![image](https://github.com/user-attachments/assets/5bb100f6-f2da-46c3-945b-0bfbe049bd41)
+
 # Заключение
 Лучшей моделью в ходе экспериментов стала _**ru-en-RoSBERTa**_.   
 Лучший алгоритм кластеризации - AgglomerativeClustering с параметрами _**n_clusters=None, distance_threshold=1.5, linkage='ward'**_
