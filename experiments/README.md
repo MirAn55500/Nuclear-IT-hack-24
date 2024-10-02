@@ -38,3 +38,5 @@
 Кластеры слов:
 ![image](https://github.com/user-attachments/assets/5e2dfd18-5bdf-47cd-a119-2f8c6c15fdfa)
 
+# Заключение
+Лучшей моделью в ходе экспериментов стала ru-en-RoSBERTa
