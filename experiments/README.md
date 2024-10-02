@@ -39,4 +39,5 @@
 ![image](https://github.com/user-attachments/assets/5e2dfd18-5bdf-47cd-a119-2f8c6c15fdfa)
 
 # Заключение
-Лучшей моделью в ходе экспериментов стала ru-en-RoSBERTa
+Лучшей моделью в ходе экспериментов стала _**ru-en-RoSBERTa**_.   
+Лучший алгоритм кластеризации - AgglomerativeClustering с параметрами _**n_clusters=None, distance_threshold=1.5, linkage='ward'**_
