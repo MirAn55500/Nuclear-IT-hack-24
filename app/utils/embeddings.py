@@ -6,18 +6,36 @@ from gensim.models import KeyedVectors
 import numpy as np
 from tqdm import tqdm
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-tokenizer = AutoTokenizer.from_pretrained("ruBert-large")
-model = AutoModel.from_pretrained("ruBert-large").to(device)
+TYPE_EMBEDDING = 'ru-en-RoSBERTa'
 
-word2vec_model = KeyedVectors.load_word2vec_format("ruwiki_20180420_300d.txt")
+if TYPE_EMBEDDING == 'word2ec':
+    # Word2vec embeddings
+    word2vec_model = KeyedVectors.load_word2vec_format("ruwiki_20180420_300d.txt")
+else:
+    # ru-en-RoSBERTa embeddings
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    tokenizer = AutoTokenizer.from_pretrained("ru-en-RoSBERTa")
+    model = AutoModel.from_pretrained("ru-en-RoSBERTa").to(device)
+
+
+def get_word2vec_embedding(word: str) -> np.ndarray:
+    """
+    Возвращает векторное представление (эмбеддинг) для слова с использованием модели Word2Vec.
+    Если передано одно слово, используется его эмбеддинг. Если строка состоит из нескольких слов,
+    используется эмбеддинг последнего слова.
+    """
+    words = word.split()
+
+    return word2vec_model.get_vector(words[-1], norm=True).reshape(-1)
+
+
 
 def get_word_embedding(word: str) -> torch.Tensor:
     """
     Get word embedding for given word
     """
     
-    # inputs = tokenizer(word, return_tensors="pt", max_length=512, padding=True, truncation=True).to(device)
+
     inputs = tokenizer("clustering: " + word, return_tensors="pt", max_length=512, padding=True, truncation=True).to(device)
     with torch.no_grad():
         outputs = model(**inputs)
