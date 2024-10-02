@@ -56,6 +56,8 @@
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/vRde3xHIVh8/0.jpg)](https://www.youtube.com/watch?v=vRde3xHIVh8)
 
+[Также демо есть на RuTube](https://rutube.ru/video/ba4b3062a6aa3137ae42de8cb834c264/)
+
 # Разворачивание решения
 
 ### **Шаг 1: Клонирование репозитория или подготовка проекта**
